@@ -7,11 +7,11 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	name := "(no name provided)"
-	if n := r.URL.Query().Get("name"); n != "" {
-		name = n
+	name := r.URL.Query().Get("name")
+	if name == "" {
+		name = "nobody"
 	}
-	fmt.Fprintf(w, "Hello, %s!\n", name)
+	fmt.Fprintf(w, "👋, %s!\n", name)
 }
 
 func main() {
